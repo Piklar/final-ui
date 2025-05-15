@@ -55,7 +55,8 @@ const Home = () => {
                 style={styles.postImage}
               />
             )}
-            <h2 style={styles.postContent}>{post.content}</h2>
+            <h2 style={styles.postTitle}>{post.title || 'Untitled Post'}</h2>
+            <p style={styles.postContent}>{post.content}</p>
             <p style={styles.postAuthor}><b>Author:</b> {post.author}</p>
             <p style={styles.date}><b>Uploaded:</b> {formatDate(post.createdAt)}</p>
             <p style={styles.date}><b>Last Updated:</b> {formatDate(post.updatedAt)}</p>
@@ -71,85 +72,82 @@ const Home = () => {
 };
 
 const styles = {
-    title: {
-        textAlign: 'center',
-        fontSize: '2em',
-        color: '#000000',
-        marginBottom: '20px',
-    },
-
-    container: {
-        padding: '20px',
-        fontFamily: 'Arial, sans-serif',
-        backgroundColor: '#B6B09F',
-        minHeight: '100vh',
-    },
-    postsContainer: {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        padding: '20px',
-        gap: '25px',
-    },
-    postCard: {
-        backgroundColor: '#F2F2F2',
-        borderRadius: '8px',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-        padding: '20px',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        height: '500px',
-        overflow: 'hidden',
-    },
-    postImage: {
-        width: '50%',
-        height: '200px',
-        objectFit: 'contain',
-        borderRadius: '5px',
-        marginBottom: '10px',
-    },
-    postContent: {
-        color: '#000000',
-        marginBottom: '10px',
-        textAlign: 'center',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        whiteSpace: 'nowrap',
-        width: '100%',
-    },
-    postAuthor: {
-        color: '#495057',
-        marginBottom: '10px',
-        fontSize: '0.9em',
-    },
-    date: {
-        fontSize: '0.8em',
-        color: '#6c757d',
-        marginBottom: '10px',
-    },
-    buttonGroup: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '100%',
-    },
-    editButton: {
-        padding: '10px 15px',
-        backgroundColor: '#007bff',
-        color: '#ffffff',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-    },
-    deleteButton: {
-        padding: '10px 15px',
-        backgroundColor: '#dc3545',
-        color: '#ffffff',
-        border: 'none',
-        borderRadius: '5px',
-        cursor: 'pointer',
-    },
-    };
-
+  title: {
+    textAlign: 'center',
+    fontSize: '2em',
+    color: '#000000',
+    marginBottom: '20px',
+  },
+  container: {
+    padding: '20px',
+    fontFamily: 'Arial, sans-serif',
+    backgroundColor: '#B6B09F',
+    minHeight: '100vh',
+  },
+  postsContainer: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+    padding: '20px',
+    gap: '25px',
+  },
+  postCard: {
+    backgroundColor: '#F2F2F2',
+    borderRadius: '8px',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+    padding: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: '500px',
+    overflow: 'hidden',
+  },
+  postImage: {
+    width: '50%',
+    height: '200px',
+    objectFit: 'contain',
+    borderRadius: '5px',
+    marginBottom: '10px',
+  },
+  postTitle: {
+    fontSize: '1.2em',
+    fontWeight: 'bold',
+    marginBottom: '10px',
+    color: '#333',
+    textAlign: 'center',
+  },
+  postContent: {
+    color: '#000000',
+    marginBottom: '10px',
+    textAlign: 'center',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    width: '100%',
+  },
+  postAuthor: {
+    color: '#495057',
+    marginBottom: '10px',
+    fontSize: '0.9em',
+  },
+  date: {
+    fontSize: '0.8em',
+    color: '#6c757d',
+    marginBottom: '10px',
+  },
+  buttonGroup: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  editButton: {
+    padding: '10px 15px',
+    backgroundColor: '#007bff',
+    color: '#ffffff',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+  },
+};
 
 export default Home;
