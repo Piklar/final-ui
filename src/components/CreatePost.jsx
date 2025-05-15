@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const CreatePost = ({ onPostCreated }) => {
+  const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [author, setAuthor] = useState('');
@@ -12,6 +13,7 @@ const CreatePost = ({ onPostCreated }) => {
     setIsSubmitting(true);
 
     const payload = {
+      title,
       content,
       imageUrl,
       author,
@@ -20,10 +22,11 @@ const CreatePost = ({ onPostCreated }) => {
     axios.post(`${import.meta.env.VITE_API_BASE_URL}/manalo/posts`, payload)
       .then((response) => {
         alert('Post created successfully!');
+        setTitle('');
         setContent('');
         setImageUrl('');
         setAuthor('');
-        onPostCreated(response.data); // Notify parent component about the new post
+        onPostCreated(response.data); // Notify parent component
       })
       .catch((err) => {
         console.error('Error creating post:', err);
@@ -37,8 +40,20 @@ const CreatePost = ({ onPostCreated }) => {
   return (
     <form onSubmit={handleSubmit} style={styles.form}>
       <h2 style={styles.formTitle}>Create a New Post</h2>
+      
       <div style={styles.inputGroup}>
         <label style={styles.label}>Title:</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+          style={styles.input}
+        />
+      </div>
+
+      <div style={styles.inputGroup}>
+        <label style={styles.label}>Content:</label>
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
@@ -46,6 +61,7 @@ const CreatePost = ({ onPostCreated }) => {
           style={styles.textarea}
         />
       </div>
+
       <div style={styles.inputGroup}>
         <label style={styles.label}>Image URL:</label>
         <input
@@ -56,6 +72,7 @@ const CreatePost = ({ onPostCreated }) => {
           style={styles.input}
         />
       </div>
+
       <div style={styles.inputGroup}>
         <label style={styles.label}>Author:</label>
         <input
@@ -66,6 +83,7 @@ const CreatePost = ({ onPostCreated }) => {
           style={styles.input}
         />
       </div>
+
       <button type="submit" disabled={isSubmitting} style={styles.submitButton}>
         {isSubmitting ? 'Creating...' : 'Create Post'}
       </button>
@@ -82,7 +100,7 @@ const styles = {
     backgroundColor: '#ffffff',
     boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
     maxWidth: '420px',
-    margin: '0 auto', // Center the form horizontally
+    margin: '0 auto',
   },
   formTitle: {
     marginBottom: '20px',
@@ -122,7 +140,7 @@ const styles = {
     borderRadius: '5px',
     cursor: 'pointer',
     display: 'block',
-    margin: '20px auto 0', // Center the button
+    margin: '20px auto 0',
   },
 };
 
